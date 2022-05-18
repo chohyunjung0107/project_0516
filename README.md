@@ -23,6 +23,25 @@ pages폴더 안에 파일을 만드면 자동으로 router처리가 된다.
 
 
 ## 동적 라우터 만들기 
+
+```
+[ pages > [id].js ]
+
+// 0. pages 폴더 안에 위와 같은 형태의 파일을 만든다. 
+import { useRouter } from "next/router"
+
+export default ()=>{
+    const router = useRouter()
+
+    return(
+        <>
+            <h1>포스트 페이지지지ㅣ</h1>
+            <p>포스트아이디: {router.query.id}</p>
+        </>
+    )
+}
+```
+
 ```
 [ pages > index.js ]
 
@@ -60,6 +79,9 @@ export default function Home(){
 }
 
 ```
+
+
+
 
 ** Next js 모든 페이지 사전 렌더링 (Pre-rendering)
 더 좋은 퍼포먼스
