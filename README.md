@@ -21,26 +21,45 @@ npm run dev
 pages폴더 안에 파일을 만드면 자동으로 router처리가 된다. 
 
 
-```
-pages > about.js 
 
-export default function About(){
-  return <div>about</div>
+## 동적 라우터 만들기 
+```
+[ pages > index.js ]
+
+import React, {useState, useEffect} from 'react'
+import { useRouter } from 'next/link'
+import Link from 'next/link'
+
+export default function Home(){
+  const [inputValue, setValue] = useState("")
+  //1. import한 useRouter를 불러온다.
+  const router = useRouter()
+  
+  //2. 버튼을 클릭하면 해당 페이지로 이동하는 핸들러 함수를 만들어준다. 
+  const handleClick=(e)=>{
+    e.preventDefault()
+    router.push(inputValue)
+  }
+  
+  return(
+    <div>
+      <main>
+        <lable>id</lable>
+        <input 
+          value={inputValue} 
+          onChange={(e)=>{
+            setValue(e.target.value)}
+          } 
+        />
+        //3. 버튼 원클릭 이벤트에 슝 넣어줌 끝! 
+        <button onClick={handleClick}>동적 페이지 이동</button>
+      </main>
+    </div>
+  )
+
 }
 
 ```
-*** http://localhost:3000/about 접속
-
-
-
-```
-pages > view > [id].js
-
-export default function view(){
-  return <div>id</div>
-}
-```
-*** http://localhost:3000/view/3 :: id를 동적으로 사용할 수 있음
 
 ** Next js 모든 페이지 사전 렌더링 (Pre-rendering)
 더 좋은 퍼포먼스
