@@ -5,6 +5,9 @@
 
 
 ```
+//타입스크립트로 설치
+npx create-next-app --typescript 플젝명
+
 //설치
 npx create-next-app 프로젝트명
 
